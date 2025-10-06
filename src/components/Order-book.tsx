@@ -37,7 +37,7 @@ const TradingDashboard = () => {
   }, []);
 
   return (
-    <div className="max-w-screen h-fit    bg-[#0f1419] text-white lg:pb-0">
+    <div className="max-w-screen h-fit  md:  bg-[#0f1419] text-white lg:pb-0">
       <TradingView />
 
       {isMobile && <MobileHeader />}

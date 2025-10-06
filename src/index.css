@@ -279,3 +279,18 @@ html, body, #root {
     color: var(--foreground);
   }
 }
+/* Dark theme overrides for IgniteUI chart */
+.ig-financial-chart {
+  background-color: #161b22 !important;
+  color: #e5e7eb !important; /* gray-200 */
+}
+
+.ig-financial-chart .ig-axis-label,
+.ig-financial-chart .ig-axis-title {
+  fill: #9ca3af !important; /* gray-400 */
+}
+
+.ig-financial-chart .ig-chart-title,
+.ig-financial-chart .ig-chart-subtitle {
+  color: #e5e7eb !important; /* gray-200 */
+}

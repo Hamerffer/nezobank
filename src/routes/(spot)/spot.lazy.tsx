@@ -77,7 +77,7 @@ function RouteComponent() {
   return (
     <>
      
-      <div className=" mb-39      paragraph-variable flex flex-col items-center mt-20">
+      <div className=" mb-39       paragraph-variable flex flex-col items-center mt-20">
      
         <Navbar/>
         <OrderBookPage />

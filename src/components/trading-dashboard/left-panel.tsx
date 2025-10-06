@@ -88,7 +88,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({
 
   return (
     <div
-      className={`w-full lg:w-1/4 h-full bg-[#181f2a] border-r border-gray-700 transition-all overflow-hidden ${
+      className={`w-full  lg:w-1/4 h-full bg-[#181f2a] border-r border-gray-700 transition-all overflow-hidden ${
         isMobile ? (leftPanelVisible ? "max-h-full" : "max-h-0") : ""
       }`}
     >

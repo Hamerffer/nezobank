@@ -1,5 +1,10 @@
+
 import TradingViewEmbed from "../ui/TradingViewEmbedd";
+import StockChart from "./chart";
 import MobileHeader from "./mobile-header";
+
+
+
 
 interface CenterPanelProps {
   isMobile: boolean;
@@ -35,11 +40,22 @@ const activeOrders = [
     amount: "0.003456",
     fee: "5.3424984",
     profit: "5.3424984 USD",
-  }, {
+  },
+  {
     date: "2020-06-30",
     time: "22:35:59",
     pair: "BTC/USD",
     type: "BUY",
+    price: "0.00056",
+    amount: "0.003456",
+    fee: "5.3424984",
+    profit: "5.3424984 USD",
+  },
+  {
+    date: "2020-06-30",
+    time: "22:35:59",
+    pair: "BTC/USD",
+    type: "SELL",
     price: "0.00056",
     amount: "0.003456",
     fee: "5.3424984",
@@ -65,8 +81,61 @@ const activeOrders = [
     fee: "5.3424984",
     profit: "5.3424984 USD",
   },
-  
+    {
+    date: "2020-06-30",
+    time: "22:35:59",
+    pair: "BTC/USD",
+    type: "SELL",
+    price: "0.00056",
+    amount: "0.003456",
+    fee: "5.3424984",
+    profit: "5.3424984 USD",
+  },  {
+    date: "2020-06-30",
+    time: "22:35:59",
+    pair: "BTC/USD",
+    type: "SELL",
+    price: "0.00056",
+    amount: "0.003456",
+    fee: "5.3424984",
+    profit: "5.3424984 USD",
+  },  {
+    date: "2020-06-30",
+    time: "22:35:59",
+    pair: "BTC/USD",
+    type: "SELL",
+    price: "0.00056",
+    amount: "0.003456",
+    fee: "5.3424984",
+    profit: "5.3424984 USD",
+  },  {
+    date: "2020-06-30",
+    time: "22:35:59",
+    pair: "BTC/USD",
+    type: "SELL",
+    price: "0.00056",
+    amount: "0.003456",
+    fee: "5.3424984",
+    profit: "5.3424984 USD",
+  },  {
+    date: "2020-06-30",
+    time: "22:35:59",
+    pair: "BTC/USD",
+    type: "SELL",
+    price: "0.00056",
+    amount: "0.003456",
+    fee: "5.3424984",
+    profit: "5.3424984 USD",
+  },
 ];
+
+// const mockData = [
+//   { time: "2025-09-30", open: 95, high: 100, low: 93, close: 98 },
+//   { time: "2025-10-01", open: 98, high: 102, low: 97, close: 101 },
+//   { time: "2025-10-02", open: 101, high: 104, low: 100, close: 102 },
+//   { time: "2025-10-03", open: 102, high: 106, low: 101, close: 103 },
+//   { time: "2025-10-04", open: 103, high: 105, low: 99, close: 100 },
+// ];
 
 const CenterPanel: React.FC<CenterPanelProps> = ({
   isMobile,
@@ -75,12 +144,12 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
   activeBottomTab,
   setActiveBottomTab,
 }) => {
+
+
+
   return (
     <div className="flex-1 flex flex-col min-h-0">
-    
-      {!isMobile && (
-        <MobileHeader/>
-      )}
+      {!isMobile && <MobileHeader />}
 
       {/* Center content: mobile tabs or desktop chart */}
       {isMobile ? (
@@ -109,8 +178,11 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
           {/* Mobile tab panels */}
           <div className="flex-1 min-h-[400px] bg-[#0f1419] overflow-hidden">
             {activeMobileTab === "Chart" && (
-              <div className="w-full h-full bg-[#181f2a]">
-                <TradingViewEmbed />
+              <div className="max-w-screen h-full bg-[#181f2a]">
+                {/* <TradingViewEmbed /> */}
+                
+                <StockChart/>
+                
               </div>
             )}
 
@@ -207,16 +279,15 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
           </div>
         </>
       ) : (
-        <div className="">
-          <div className="w-full h-full  bg-[#123c80] rounded overflow-hidden">
-            <TradingViewEmbed />
-          </div>
-        </div>
+       
+         
+            <StockChart  />
+         
       )}
 
       {/* Bottom panel - Orders */}
-      <div className="bg-[#181f2a] border-t border-gray-700  lg:flex-none lg:h-48 w-full min-w-full">
-        <div className="flex border-b border-gray-700 overflow-x-auto ">
+      <div className="bg-[#181f2a] border-t border-gray-700 flex-1 w-full min-w-full overflow-auto scroll-hidden">
+        <div className="flex border-b border-gray-700 overflow-x-auto  ">
           {[
             "active-orders",
             "order-history",
@@ -238,7 +309,7 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
           ))}
         </div>
 
-        <div className="h-full overflow-auto ">
+        <div className="h-full overflow-auto  ">
           {activeBottomTab === "active-orders" && (
             <div className="overflow-x-auto">
               <table className="w-full text-xs ">
@@ -252,14 +323,13 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
                     <th className="py-2 px-2 text-right text-xs">Amount</th>
                     <th className="py-2 px-2 text-right text-xs">Filled</th>
                     <th className="py-2 px-2 text-right text-xs">Total</th>
-                  
                   </tr>
                 </thead>
                 <tbody>
                   {activeOrders.map((order, i) => (
                     <tr
                       key={i}
-                      className="hover:bg-[#222c3c] transition border-b border-gray-800"
+                      className="hover:bg-[#222c3c] transition border-b border-gray-800 "
                     >
                       <td className="py-2 px-2 text-xs">{order.date}</td>
                       <td className="py-2 px-2 text-xs">{order.pair}</td>
@@ -287,7 +357,6 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
                       <td className="py-2 px-2 text-right font-mono text-xs">
                         {order.profit}
                       </td>
-                    
                     </tr>
                   ))}
                 </tbody>
@@ -302,7 +371,7 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
           )}
 
           {activeBottomTab === "trade-history" && (
-          <div className="overflow-x-auto">
+            <div className="overflow-x-auto">
               <table className="w-full text-xs ">
                 <thead className="sticky top-0 bg-[#181f2a]">
                   <tr className="text-gray-400">
@@ -314,7 +383,6 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
                     <th className="py-2 px-2 text-right text-xs">Amount</th>
                     <th className="py-2 px-2 text-right text-xs">Filled</th>
                     <th className="py-2 px-2 text-right text-xs">Total</th>
-                  
                   </tr>
                 </thead>
                 <tbody>
@@ -349,7 +417,6 @@ const CenterPanel: React.FC<CenterPanelProps> = ({
                       <td className="py-2 px-2 text-right font-mono text-xs">
                         {order.profit}
                       </td>
-                    
                     </tr>
                   ))}
                 </tbody>
